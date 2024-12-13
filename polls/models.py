@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+
 # MTV - model
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -11,7 +12,11 @@ class Question(models.Model):
         return self.question_text
 
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        """
+        最近的出版
+        """
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 
 class Choice(models.Model):
