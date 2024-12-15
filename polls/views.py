@@ -1,9 +1,9 @@
-
 from django.db.models import F
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Question, Choice
+from django.utils import timezone
 
 
 # MTV - view
@@ -11,7 +11,9 @@ def index(request):
     """
     首页
     """
-    latest_question_list = Question.objects.order_by("-pub_date")[:5]
+    latest_question_list = Question.objects.filter(
+        pub_date__lte=timezone.now()
+    ).order_by('-pub_date')[:5]
     context = {"latest_question_list": latest_question_list}
     return render(request, "polls/index.html", context)
 
