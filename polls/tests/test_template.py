@@ -13,7 +13,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.selenium = WebDriver()
-        cls.selenium.implicitly_wait(10)
+        cls.selenium.implicitly_wait(2)
 
     @classmethod
     def tearDownClass(cls):
@@ -63,7 +63,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element(By.CSS_SELECTOR, "input[type='submit']").click()
         
         # 检查结果页面
-        results = self.selenium.find_elements(By.CLASS_NAME, "choice")
+        results = self.selenium.find_elements(By.TAG_NAME, "li")
         self.assertIn("Brave heart", results[0].text)
         self.assertIn("1 vote", results[0].text)
 
@@ -82,7 +82,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element(By.CSS_SELECTOR, "input[type='submit']").click()
         
         # 检查结果页面
-        results = self.selenium.find_elements(By.CLASS_NAME, "choice")
+        results = self.selenium.find_elements(By.TAG_NAME, "li")
         # 第一个选项应该有1票
         self.assertIn("Brave heart", results[0].text)
         self.assertIn("1 vote", results[0].text)
