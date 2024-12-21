@@ -4,10 +4,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.webdriver import WebDriver
 from polls.models import Question, Choice
 from django.utils import timezone
+from polls.tests.common import create_question, create_choice
 
 
 class MySeleniumTests(StaticLiveServerTestCase):
-    # fixtures = ["user-data.json"]
 
     @classmethod
     def setUpClass(cls):
@@ -21,23 +21,26 @@ class MySeleniumTests(StaticLiveServerTestCase):
         super().tearDownClass()
 
     def setUp(self):
-        # 先创建 Question 对象
-        self.question = Question.objects.create(
-            id=1,
-            question_text="Your favorite movie",
-            pub_date=timezone.now() - datetime.timedelta(minutes=1)
-        )
-        # 创建 Choice 对象时正确设置 question 字段
-        Choice.objects.create(
-            id=1,
-            choice_text="Brave heart",
-            question=self.question
-        )
-        Choice.objects.create(
-            id=2,
-            choice_text="Harry Potter and the Philosopher's Stone",
-            question=self.question
-        )
+        self.question = create_question(question_id=1, question_text="Your favorite movie", days=1)
+        create_choice(question=self.question, choice_id=1, choice_text="Brave heart")
+        create_choice(question=self.question, choice_id=2, choice_text="Harry Potter and the Philosopher's Stone")
+        # # 先创建 Question 对象
+        # self.question = Question.objects.create(
+        #     id=1,
+        #     question_text="Your favorite movie",
+        #     pub_date=timezone.now() - datetime.timedelta(minutes=1)
+        # )
+        # # 创建 Choice 对象时正确设置 question 字段
+        # Choice.objects.create(
+        #     id=1,
+        #     choice_text="Brave heart",
+        #     question=self.question
+        # )
+        # Choice.objects.create(
+        #     id=2,
+        #     choice_text="Harry Potter and the Philosopher's Stone",
+        #     question=self.question
+        # )
 
     def test_index(self):
         self.selenium.get(f"{self.live_server_url}/polls/")

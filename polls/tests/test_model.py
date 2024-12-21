@@ -2,14 +2,15 @@ import datetime
 from django.test import TestCase
 from django.utils import timezone
 from polls.models import Question, Choice
+from polls.tests.common import create_choice, create_question
 
 
 class QuestionModelTests(TestCase):
     """模型测试"""
 
     def setUp(self):
-        Question.objects.create(id=1, question_text="Your favorite movie", pub_date=timezone.now() - datetime.timedelta(minutes=1))
-        Question.objects.create(id=2, question_text="Your favorite music", pub_date=timezone.now() - datetime.timedelta(hours=1))
+        create_question(1, "Your favorite movie", days=1)
+        create_question(2, "Your favorite music", days=1)
 
     def test_query_one(self):
         """查询单条数据"""
@@ -22,6 +23,23 @@ class QuestionModelTests(TestCase):
         """查询模糊数据"""
         result = Question.objects.filter(question_text__startswith="Your favorite")
         self.assertEqual(len(result), 2)
+
+    def test_create(self):
+        q = create_question(3, "you love book", 10)
+        self.assertEqual(q.question_text, "you love book")
+
+    def test_update(self):
+        q = Question.objects.get(id=1)
+        q.question_text = "you love TV"
+        q.save()
+        q = Question.objects.get(id=1)
+        self.assertEqual(q.question_text, "you love TV")
+
+    def test_delete(self):
+        q = Question.objects.get(id=1)
+        q.delete()
+        with self.assertRaises(Question.DoesNotExist):
+            Question.objects.get(id=1)
 
 
 class QuestionModelWasPublishedRecentlyTests(TestCase):
