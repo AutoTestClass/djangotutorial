@@ -15,6 +15,7 @@ python manage.py runserver
 ## 运行测试
 
 应用测试：https://docs.djangoproject.com/zh-hans/5.1/intro/tutorial05/
+
 测试工具：https://docs.djangoproject.com/zh-hans/5.1/topics/testing/
 
 运行所有用例：
@@ -40,3 +41,12 @@ python manage.py test polls.tests
 ```shell
 python manage.py test polls.tests.test_model.QuestionModelTests
 ```
+
+## Django Debug toolbar
+
+官方文档：https://django-debug-toolbar.readthedocs.io/
+
+[安装与使用](./docs/debug_toolbar.md)
+
+![](./docs/images/djdt_list.png)
+
