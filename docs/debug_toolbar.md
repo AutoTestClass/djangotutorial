@@ -75,3 +75,42 @@ INTERNAL_IPS = [
 点击`DjDT`按钮显示 Debug toolbar 工具列表
 
 ![](./images/djdt_list.png)
+
+🚨问题：【DjDT在】部分页面无法显示的问题。
+
+view视图返回的页面一定要包含`<body></body>`标签，例如`results.html`页面:
+
+```html
+<body> 
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+
+</body>
+```
+
+## 分析
+
+* 查看页面的响应。
+
+![](./images/djdt_time.png)
+
+
+* 查看历史URL请求。
+
+![](./images/djdt_history.png)
+
+* 查看请求信息。
+
+![](./images/djdt_request.png)
+
+* 查看SQL。
+
+![](./images/djdt_sql.png)
+
