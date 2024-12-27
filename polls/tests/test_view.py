@@ -1,9 +1,6 @@
-import datetime
 from django.test import TestCase
-from django.utils import timezone
 from django.urls import reverse
-from polls.models import Question, Choice
-from polls.tests.common import create_question
+from polls.tests.common import create_question, create_choice
 
 
 class PollsPageTest(TestCase):
@@ -70,3 +67,75 @@ class PollsPageTest(TestCase):
             [question2, question1],
             ordered=True
         )
+
+
+class DetailTest(TestCase):
+    """测试polls详情页面"""
+
+    def setUp(self):
+        self.q = create_question(1, "you love movie", 10)
+        create_choice(self.q, 1, "Brave heart")
+        create_choice(self.q, 2, "Harry Potter and the Wizard")
+
+    def test_polls_page_renders_detail_template(self):
+        """
+        断言是否用给定的detail.html模版响应
+        """
+        response = self.client.get("/polls/1/")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'polls/detail.html')
+
+
+class VoteTest(TestCase):
+    """测试polls投票动作"""
+
+    def setUp(self):
+        self.q = create_question(1, "you love movie", 10)
+        create_choice(self.q, 1, "Brave heart")
+        create_choice(self.q, 2, "Harry Potter and the Wizard")
+
+    def test_polls_vote(self):
+        """
+        投票动作
+        """
+        response = self.client.post("/polls/1/vote/", data={"choice": 2})
+        self.assertEqual(response.status_code, 302)
+
+    def test_polls_vote_choice_error(self):
+        """
+        投票动作: 选项错误
+        """
+        response = self.client.post("/polls/1/vote/", data={"choice": 10})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'polls/detail.html')
+
+
+class ResultTest(TestCase):
+    """测试polls投票结果页"""
+
+    def setUp(self):
+        self.q = create_question(1, "you love movie", 10)
+        create_choice(self.q, 1, "Brave heart")
+        create_choice(self.q, 2, "Harry Potter and the Wizard")
+
+    def test_polls_result(self):
+        """
+        投票结果页面
+        """
+        response = self.client.get("/polls/1/results/")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'polls/results.html')
+
+    def test_polls_vote_result(self):
+        """
+        投票结果页面： 投票动作 + 结果显示
+        """
+        response = self.client.post("/polls/1/vote/", data={"choice": 2})
+        self.assertEqual(response.status_code, 302)
+
+        response = self.client.get("/polls/1/results/")
+        self.assertEqual(response.status_code, 200)
+        # print(response.content)
+        self.assertContains(response, "Harry Potter and the Wizard -- 1 vote")
+
+
