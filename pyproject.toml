@@ -9,6 +9,8 @@ readme = "README.md"
 python = "^3.12"
 django = "^5.1.4"
 selenium = "^4.27.1"
+django-debug-toolbar = "^4.4.6"
+django-silk = "^5.3.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -17,4 +19,4 @@ build-backend = "poetry.core.masonry.api"
 
 [[tool.poetry.source]]
 name = "tsinghua"
-url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+url = "https://pypi.doubanio.com/simple/"
