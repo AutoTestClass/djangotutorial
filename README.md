@@ -44,9 +44,16 @@ python manage.py test polls.tests.test_model.QuestionModelTests
 
 ## Django Debug toolbar
 
-官方文档：https://django-debug-toolbar.readthedocs.io/
+* 官方文档：https://django-debug-toolbar.readthedocs.io/
 
-[安装与使用](./docs/debug_toolbar.md)
+* [安装与使用](./docs/debug_toolbar.md)
 
 ![](./docs/images/djdt_list.png)
 
+## Django-Silk
+
+* 开源地址：https://github.com/jazzband/django-silk
+
+* [安装与使用](./docs/django_silk.md)
+
+![](./docs/images/silk_summary.png)
