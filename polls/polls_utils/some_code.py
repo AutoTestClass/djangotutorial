@@ -4,11 +4,17 @@
 from time import sleep
 
 
-def foo():
-    sleep(1.23)
+def foo(duration=0.000001):
+    """
+    Function that needs some serious benchmarking.
+    """
+    sleep(duration)
+    return 123
 
 
 class MyClass:
+    def __init__(self, arg=0.01):
+        self.arg = arg
 
     def bar(self) -> []:
-        sleep(0.14)
+        sleep(self.arg)

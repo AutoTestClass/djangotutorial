@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pyperf
 
-polls_dir = Path(__file__).resolve().parent.parent.parent
+polls_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(polls_dir))
 
 from polls.polls_utils.some_code import foo

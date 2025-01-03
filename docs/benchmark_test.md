@@ -133,49 +133,49 @@ __更多参数__
 
 下面是 `pyperf timeit --help` 命令的中文翻译以及对应的 Markdown 表格：
 
-|                  选项                   |                             描述                             |
-| :-------------------------------------: | :----------------------------------------------------------: |
-|              `-h, --help`               |                      显示帮助信息并退出                      |
-|              `--rigorous`               |            花费更长时间运行测试以获得更准确的结果            |
-|                `--fast`                 |                      快速获得粗略的答案                      |
-|         `--debug-single-value`          |                    调试模式，只计算一个值                    |
-|  `-p PROCESSES, --processes PROCESSES`  |             用于运行基准测试的进程数（默认：20）             |
-|      `-n VALUES, --values VALUES`       |                  每个进程的值数（默认：3）                   |
-|     `-w WARMUPS, --warmups WARMUPS`     |             每次运行跳过的值数，用于预热基准测试             |
-|        `-l LOOPS, --loops LOOPS`        |           每个值的循环数，0表示自动校准（默认：0）           |
-|             `-v, --verbose`             |                         启用详细模式                         |
-|              `-q, --quiet`              |                         启用安静模式                         |
-|               `--pipe FD`               |             将基准测试编码为 JSON 并写入管道 FD              |
-|    `-o FILENAME, --output FILENAME`     |              将结果编码为 JSON 并写入 FILENAME               |
-|           `--append FILENAME`           |             将结果编码为 JSON 并追加到 FILENAME              |
-|          `--min-time MIN_TIME`          | 单个值的最小持续时间（秒），用于校准循环数（默认：100 毫秒） |
-|           `--timeout TIMEOUT`           |      指定单个基准测试执行的超时时间（秒）（默认：禁用）      |
-|               `--worker`                |                    工作进程，运行基准测试                    |
-|         `--worker-task TASK_ID`         |         工作任务的标识符：仅执行基准测试函数 TASK_ID         |
-|           `--calibrate-loops`           |                          校准循环数                          |
-|          `--recalibrate-loops`          |                        重新校准循环数                        |
-|          `--calibrate-warmups`          |                          校准预热数                          |
-|         `--recalibrate-warmups`         |                        重新校准预热数                        |
-|              `-d, --dump`               |                     显示基准测试运行结果                     |
-|            `--metadata, -m`             |                          显示元数据                          |
-|              `--hist, -g`               |                        显示值的直方图                        |
-|              `--stats, -t`              |               显示统计信息（最小值、最大值等）               |
-|          `--affinity CPU_LIST`          |                  指定工作进程的 CPU 亲和性                   |
-|        `--inherit-environ VARS`         |            工作子进程继承的环境变量的逗号分隔列表            |
-|              `--copy-env`               |                       复制所有环境变量                       |
-|              `--no-locale`              |                    不复制区域设置环境变量                    |
-|            `--python PYTHON`            |                      Python 可执行文件                       |
-|        `--compare-to REF_PYTHON`        |       在 REF_PYTHON 和 PYTHON 上运行基准测试并进行比较       |
-| `--python-names REF_NAME:CHANGED_NAMED` |              在结果中命名 PYTHON 和 REF_PYTHON               |
-|           `--profile PROFILE`           |                       收集性能分析数据                       |
-|            `--hook pystats`             |                    使用给定的 pyperf 钩子                    |
-|             `--tracemalloc`             |                使用 tracemalloc 跟踪内存分配                 |
-|            `--track-memory`             |                   使用线程跟踪内存使用情况                   |
-|              `--name NAME`              |                基准测试名称（默认：'timeit'）                |
-|        `-s SETUP, --setup SETUP`        |                           设置语句                           |
-|          `--teardown TEARDOWN`          |                           拆卸语句                           |
-|       `--inner-loops INNER_LOOPS`       |                      每个值的内部循环数                      |
-|         `--duplicate DUPLICATE`         |                 重复语句以减少外部循环的开销                 |
+|                   选项                    |                 描述                 |
+|:---------------------------------------:|:----------------------------------:|
+|              `-h, --help`               |             显示帮助信息并退出              |
+|              `--rigorous`               |        花费更长时间运行测试以获得更准确的结果         |
+|                `--fast`                 |             快速获得粗略的答案              |
+|         `--debug-single-value`          |            调试模式，只计算一个值             |
+|  `-p PROCESSES, --processes PROCESSES`  |        用于运行基准测试的进程数（默认：20）         |
+|      `-n VALUES, --values VALUES`       |           每个进程的值数（默认：3）            |
+|     `-w WARMUPS, --warmups WARMUPS`     |         每次运行跳过的值数，用于预热基准测试         |
+|        `-l LOOPS, --loops LOOPS`        |       每个值的循环数，0表示自动校准（默认：0）        |
+|             `-v, --verbose`             |               启用详细模式               |
+|              `-q, --quiet`              |               启用安静模式               |
+|               `--pipe FD`               |       将基准测试编码为 JSON 并写入管道 FD       |
+|    `-o FILENAME, --output FILENAME`     |      将结果编码为 JSON 并写入 FILENAME      |
+|           `--append FILENAME`           |     将结果编码为 JSON 并追加到 FILENAME      |
+|          `--min-time MIN_TIME`          |  单个值的最小持续时间（秒），用于校准循环数（默认：100 毫秒）  |
+|           `--timeout TIMEOUT`           |     指定单个基准测试执行的超时时间（秒）（默认：禁用）      |
+|               `--worker`                |            工作进程，运行基准测试             |
+|         `--worker-task TASK_ID`         |     工作任务的标识符：仅执行基准测试函数 TASK_ID     |
+|           `--calibrate-loops`           |               校准循环数                |
+|          `--recalibrate-loops`          |              重新校准循环数               |
+|          `--calibrate-warmups`          |               校准预热数                |
+|         `--recalibrate-warmups`         |              重新校准预热数               |
+|              `-d, --dump`               |             显示基准测试运行结果             |
+|            `--metadata, -m`             |               显示元数据                |
+|              `--hist, -g`               |              显示值的直方图               |
+|              `--stats, -t`              |          显示统计信息（最小值、最大值等）          |
+|          `--affinity CPU_LIST`          |          指定工作进程的 CPU 亲和性           |
+|        `--inherit-environ VARS`         |        工作子进程继承的环境变量的逗号分隔列表         |
+|              `--copy-env`               |              复制所有环境变量              |
+|              `--no-locale`              |            不复制区域设置环境变量             |
+|            `--python PYTHON`            |            Python 可执行文件            |
+|        `--compare-to REF_PYTHON`        | 在 REF_PYTHON 和 PYTHON 上运行基准测试并进行比较 |
+| `--python-names REF_NAME:CHANGED_NAMED` |     在结果中命名 PYTHON 和 REF_PYTHON     |
+|           `--profile PROFILE`           |              收集性能分析数据              |
+|            `--hook pystats`             |          使用给定的 pyperf 钩子           |
+|             `--tracemalloc`             |       使用 tracemalloc 跟踪内存分配        |
+|            `--track-memory`             |            使用线程跟踪内存使用情况            |
+|              `--name NAME`              |        基准测试名称（默认：'timeit'）         |
+|        `-s SETUP, --setup SETUP`        |                设置语句                |
+|          `--teardown TEARDOWN`          |                拆卸语句                |
+|       `--inner-loops INNER_LOOPS`       |             每个值的内部循环数              |
+|         `--duplicate DUPLICATE`         |           重复语句以减少外部循环的开销           |
 
 示例：
 
@@ -245,8 +245,172 @@ Run 2: 1 warmup, 3 values, 1 loop
 Mean +- std dev: 1.23 sec +- 0.00 sec
 ```
 
-### pytest-benchmark
+## pytest-benchmark
 
 项目地址：https://github.com/ionelmc/pytest-benchmark
 
-pytest-benchmark是 pytest单元测试框架的一个插件。单独编写单元测试用例：
+pytest-benchmark 是 pytest单元测试框架的一个插件。
+
+### 安装和使用
+
+__安装__
+
+* pip安装pyperf
+
+```shell
+> pip install pytest
+> pip install pytest-benchmark
+```
+
+__使用__
+
+编写基准测试用例。
+
+```python
+import sys
+from pathlib import Path
+
+polls_dir = Path(__file__).resolve().parent.parent
+sys.path.append(str(polls_dir))
+
+from polls.polls_utils.some_code import foo
+
+
+def test_my_stuff(benchmark):
+    # benchmark foo
+    result = benchmark(foo)
+    assert result == 123
+
+
+def test_my_stuff_different_arg(benchmark):
+    # benchmark foo, but add some arguments
+    result = benchmark(foo, 0.001)
+    assert result == 123
+```
+
+运行测试
+
+```shell
+pytest test_benchmark2.py
+```
+
+![](./images/benchmarks_pytest_result.png)
+
+### 更多用法
+
+__命令行参数__
+
+以下是根据文中内容整理的关于命令行参数的表格：
+
+以下是根据文中内容整理的关于命令行参数的表格：
+
+|                     参数                     |                                                                                       说明                                                                                       |                                   默认值                                    |
+|:------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------:|
+|        --benchmark-min-time=SECONDS        |                                                                                  每轮测试的最小时间（秒）                                                                                  |                                ‘0.000005’                                |
+|        --benchmark-max-time=SECONDS        |                                                     每个测试的最大运行时间，会重复测试直到达到总时间。如果测试函数非常慢或–benchmark-min-rounds很大，则可能会超过此时间。                                                      |                                  ‘1.0’                                   |
+|         --benchmark-min-rounds=NUM         |                                                                       最小测试轮数，即使总时间会超过–benchmark-max-time                                                                       |                                    5                                     |
+|           --benchmark-timer=FUNC           |                                                                                  测量时间时使用的计时器                                                                                   |                           ‘time.perf_counter’                            |
+|   --benchmark-calibration-precision=NUM    |                                                                  校准迭代次数时使用的精度。精度为10会使计时器看起来精确10倍，但偏差测量的精度会降低。                                                                  |                                    10                                    |
+|         --benchmark-warmup=[KIND]          |                                激活预热。在校准阶段运行测试函数，直到达到指定的次数。参见–benchmark-warmup-iterations。注意：预热阶段也遵守–benchmark-max-time。可选值：‘auto’, ‘off’, ‘on’。                                |                            ‘auto’（在PyPy上自动激活）                            |
+|     --benchmark-warmup-iterations=NUM      |                                                                                 预热阶段运行的最大迭代次数                                                                                  |                                  100000                                  |
+|           --benchmark-disable-gc           |                                                                                 在基准测试期间禁用垃圾回收                                                                                  |                                                                          |
+|              --benchmark-skip              |                                                                                 跳过包含基准测试的任何测试                                                                                  |                                                                          |
+|            --benchmark-disable             |                                                                         禁用基准测试。基准测试函数只运行一次，并且不报告统计信息。                                                                          |                                                                          |
+|             --benchmark-enable             |                                                            强制启用基准测试。使用此选项可以覆盖–benchmark-disable（如果您在pytest配置中设置了它）。                                                            |                                                                          |
+|              --benchmark-only              |                                                                          仅运行基准测试。这会覆盖–benchmark-skip。                                                                          |                                                                          |
+|           --benchmark-save=NAME            |                                                                   将当前运行保存到‘STORAGE-PATH/counter-NAME.json’。                                                                    |                   ‘<commitid>_<date>_<time>_<isdirty>’                   |
+|            --benchmark-autosave            |                                                     自动将当前运行保存到‘STORAGE-PATH/<counter>_<commitid>_<date>_<time>_<isdirty>’。                                                     |                                                                          |
+|           --benchmark-save-data            |                                                            使–benchmark-save和–benchmark-autosave包括所有计时数据，而不仅仅是统计信息。                                                             |                                                                          |
+|           --benchmark-json=PATH            |                                                                 将JSON报告转储到PATH。注意，这将包括完整的数据（所有计时数据，而不仅仅是统计信息）。                                                                 |                                                                          |
+|          –benchmark-compare=[NUM           |                                                                                      _ID]                                                                                      |           将当前运行与运行NUM（或elasticsearch中_id的前缀）或未指定时的最新保存的运行进行比较。           |  |
+|   –benchmark-compare-fail=EXPR [EXPR …]    |                                                            如果性能根据给定的EXPR退化，则测试失败（例如：min:5%或mean:0.001表示秒数）。可以多次使用。                                                             |                                                                          |
+|        --benchmark-cprofile=COLUMN         |                      如果指定，将启用cProfile。将为给定列存储顶部函数。可用列：‘ncalls_recursion’, ‘ncalls’, ‘tottime’, ‘tottime_per’, ‘cumtime’, ‘cumtime_per’, ‘function_name’。                       |                                                                          |
+|      --benchmark-cprofile-loops=LOOPS      |                                                                       在cprofile中运行函数的次数。可用选项：‘auto’或整数。                                                                        |                                                                          |
+|       --benchmark-cprofile-top=COUNT       |                                                                                    要显示的行数。                                                                                     |                                                                          |
+| –benchmark-cprofile-dump=[FILENAME-PREFIX] |                                                将cprofile转储保存为FILENAME-PREFIX-test_name.prof。如果FILENAME-PREFIX包含斜杠（‘/’），则会创建目录。                                                 |                       ‘benchmark_20241028_160327’                        |
+|        --benchmark-time-unit=COLUMN        |                                                                     将结果缩放到的单位。可用单位：‘ns’, ‘us’, ‘ms’, ‘s’。                                                                      |                                  ‘auto’                                  |
+|          --benchmark-storage=URI           | 指定存储运行的路径作为uri，形式为file://path或elasticsearch+http[s]://host1,host2/[index/doctype?project_name=Project]（当使用–benchmark-save或–benchmark-autosave时）。为了向后兼容，意外值将被转换为file://<value>。 |                          ‘file://./.benchmarks’                          |
+|     –benchmark-netrc=[BENCHMARK_NETRC]     |                                                                           从netrc文件加载elasticsearch凭据。                                                                           |                                    ‘’                                    |
+|            --benchmark-verbose             |                                                                                   转储诊断和进度信息。                                                                                   |                                                                          |
+|             --benchmark-quiet              |                                                                                  禁用报告。详细模式优先。                                                                                  |                                                                          |
+|            --benchmark-sort=COL            |                                                       要排序的列。可以是以下之一：‘min’, ‘max’, ‘mean’, ‘stddev’, ‘name’, ‘fullname’。                                                        |                                  ‘min’                                   |
+|         --benchmark-group-by=LABEL         |                           如何对测试进行分组。可以是以下之一：‘group’, ‘name’, ‘fullname’, ‘func’, ‘fullfunc’, ‘param’或‘param:NAME’，其中NAME是传递给@pytest.parametrize的名称。                            |                                 ‘group’                                  |
+|         --benchmark-columns=LABELS         |                                                                               结果表中要显示的列的逗号分隔列表。                                                                                | ‘min, max, mean, stddev, median, iqr, outliers, ops, rounds, iterations’ |
+|          --benchmark-name=FORMAT           |                                                             结果中名称的格式。可以是以下之一：‘short’, ‘normal’, ‘long’, 或‘trial’。                                                              |                                 ‘normal’                                 |
+|  --benchmark-histogram=[FILENAME-PREFIX]   |                                          在FILENAME-PREFIX-test_name.svg中绘制随时间变化的最小值/最大值/平均值/标准差的图形。如果FILENAME-PREFIX包含斜杠（‘/’），则会创建目录。                                          |                        ‘benchmark_<date>_<time>’                         |
+
+__生成基准测试图片__
+
+1.安装依赖
+
+```shell
+pip install pygal
+pip install pygaljs
+```
+
+2.运行测试跟`--benchmark-histogram`参数
+
+```shell
+pytest test_benchmark2.py --benchmark-histogram
+```
+
+3.查看生成图片
+
+![](./images/benchmarks_pytest_result2.png)
+
+
+__类方法进行基准测试__
+
+1.安装依赖
+
+```shell
+pip install aspectlib 
+```
+
+2.运行测试用例
+
+```python
+import sys
+from pathlib import Path
+
+polls_dir = Path(__file__).resolve().parent.parent
+sys.path.append(str(polls_dir))
+
+from polls.polls_utils.some_code import MyClass
+
+
+def test_class_method(benchmark):
+    benchmark.weave(MyClass.bar, lazy=True)
+    mc = MyClass()
+    mc.bar()
+```
+
+__使用markers__
+
+你可以用基准`markers`设置每个测试的选项：
+
+```python
+import time
+import pytest
+
+@pytest.mark.benchmark(
+    group="group-name",
+    min_time=0.1,
+    max_time=0.5,
+    min_rounds=5,
+    timer=time.time,
+    disable_gc=True,
+    warmup=False
+)
+def test_my_stuff(benchmark):
+    @benchmark
+    def result():
+        # Code to be measured
+        return time.sleep(0.000001)
+
+    # Extra code, to verify that the run
+    # completed correctly.
+    # Note: this code is not measured.
+    assert result is None
+```
+
