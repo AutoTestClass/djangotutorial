@@ -12,7 +12,7 @@ python manage.py runserver
 ```
 
 
-## 运行测试
+## Django测试
 
 应用测试：https://docs.djangoproject.com/zh-hans/5.1/intro/tutorial05/
 
@@ -42,7 +42,7 @@ python manage.py test polls.tests
 python manage.py test polls.tests.test_model.QuestionModelTests
 ```
 
-## Django Debug toolbar
+## Django调试工具
 
 * 官方文档：https://django-debug-toolbar.readthedocs.io/
 
@@ -50,10 +50,30 @@ python manage.py test polls.tests.test_model.QuestionModelTests
 
 ![](./docs/images/djdt_list.png)
 
-## Django-Silk
+## Django性能分析
 
 * 开源地址：https://github.com/jazzband/django-silk
 
 * [安装与使用](./docs/django_silk.md)
 
 ![](./docs/images/silk_summary.png)
+
+## 基准测试
+
+* [查看文档](./docs/benchmark_test.md)
+
+![](./docs/images/benchmarks_pytest_result2.png)
+
+## 覆盖率统计
+
+* [查看文档](./docs/coverage_test.md)
+
+![](./docs/images/coverage_html_report.png)
+
+## 缓存框架
+
+https://docs.djangoproject.com/zh-hans/5.1/topics/cache/
+
+django-db-performance
+
+这个库可以帮助你监控 Django 的数据库性能，它会记录查询的执行时间，并报告在基准测试过程中数据库的性能瓶颈
