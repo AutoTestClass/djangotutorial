@@ -358,6 +358,7 @@ Coverage.py 的工作分为三个阶段：
 
 ## django 中使用 Coverage
 
+### 测试覆盖率
 
 要使用标准测试设置运行 Django 测试套件的覆盖率：
 
@@ -411,3 +412,83 @@ polls\views.py                        37      0   100%
 ----------------------------------------------------------------
 TOTAL                                305      4    99%
 ```
+
+### 动态覆盖率
+
+要获取 Django 项目的动态覆盖率（即在 Django 项目运行期间，通过访问功能和使用服务来测量代码覆盖率），可以按照以下步骤操作。Coverage.py 支持在 Django 项目运行时动态收集覆盖率数据。
+
+#### 方法 1: 使用 `coverage run` 启动 Django 项目
+你可以直接使用 `coverage run` 启动 Django 的开发服务器，并在运行期间收集覆盖率数据。
+
+1. 在项目根目录下运行以下命令：
+```bash
+coverage run --source='.' manage.py runserver --noreload
+```
+  - `--source='.'`：指定当前目录（Django 项目根目录）为覆盖率测量的源文件目录。
+  - `manage.py runserver`：启动 Django 开发服务器。
+  - `--noreload`: 如果不禁用热加载，Django 会在代码发生变化时自动重载服务器，这样会导致 coverage.py 没有机会在整个运行过程中正确地收集覆盖率数据。
+
+2. 访问 Django 项目的功能（如通过浏览器或 API 工具），触发代码执行。
+
+3. 停止 Django 服务器（按 `Ctrl+C`），然后查看和生成覆盖率报告：
+```bash
+coverage report -m
+coverage html
+```
+
+#### 方法 2: 使用 `coverage` 的 API 动态收集覆盖率
+
+如果你希望在 Django 项目中动态控制覆盖率的收集（例如，只在特定时间段内收集覆盖率），可以使用 Coverage.py 的 API。
+
+1. 在 Django 项目的 `settings.py` 中添加以下代码：
+
+```python
+import coverage
+import atexit
+
+# 启动覆盖率收集
+cov = coverage.Coverage(source=['polls'])
+cov.start()
+
+# 注册退出时的回调函数，停止覆盖率收集并生成报告
+def save_coverage():
+   cov.stop()
+   cov.save()
+   cov.html_report(directory='htmlcov')
+
+atexit.register(save_coverage)
+```
+
+- `source=['polls']`：指定需要测量覆盖率的 Django 应用名称。
+- `atexit.register(save_coverage)`：在 Django 服务器退出时自动保存覆盖率数据并生成报告。
+
+2. 启动 Django 开发服务器：
+```bash
+python manage.py runserver --noreload
+```
+
+3. 访问 Django 项目的功能（如通过浏览器或 API 工具），触发代码执行。
+
+4. 停止 Django 服务器（按 `Ctrl+C`），覆盖率数据会自动保存并生成报告。
+
+![](./images/coverage_views_result.png)
+
+#### 收集模板覆盖率
+
+默认coverage.py 无法收集django模板的覆盖率，我们可以借助插件用来测量Django模板的测试覆盖率。
+
+github: https://github.com/nedbat/django_coverage_plugin
+
+1. 通过pip命令安装插件。
+```shell
+pip install django_coverage_plugin
+```
+
+2. 项目跟目录下创建`.coveragerc` 配置文件:
+```shell
+[run]
+plugins = django_coverage_plugin
+```
+
+3. 查看django模板的覆盖率。
+![](./images/coverage_views_result.png)
