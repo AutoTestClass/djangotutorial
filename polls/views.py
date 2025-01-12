@@ -1,13 +1,8 @@
-from time import sleep
-
 from django.db.models import F
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
-from silk.profiling.profiler import silk_profile
-
-from polls.polls_utils import some_code
 from .models import Question, Choice
 
 
@@ -15,13 +10,6 @@ def index(request):
     """
     首页
     """
-    @silk_profile()
-    def do_something_long():
-        sleep(1.345)
-
-    with silk_profile(name="why do this so long??"):
-        do_something_long()
-
     latest_question_list = Question.objects.filter(
         pub_date__lte=timezone.now()
     ).order_by('-pub_date')[:5]
@@ -29,7 +17,6 @@ def index(request):
     return render(request, "polls/index.html", context)
 
 
-@silk_profile(name='View polls detail')
 def detail(request, question_id):
     """
     详情页
@@ -42,11 +29,6 @@ def results(request, question_id):
     """
     结果页
     """
-    # 动态分析代码（无实际意义）
-    some_code.foo()
-    mc = some_code.MyClass()
-    mc.bar()
-
     question = get_object_or_404(Question, pk=question_id)
     return render(request, "polls/results.html", {"question": question})
 

@@ -11,6 +11,26 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+import coverage
+import atexit
+
+
+# 启动覆盖率收集
+cov = coverage.Coverage(source=['polls'])
+cov.start()
+
+
+def save_coverage():
+    """
+    注册退出时的回调函数，停止覆盖率收集并生成报告
+    """
+    cov.stop()
+    cov.save()
+    cov.html_report(directory='htmlcov')  # 生成 html 格式的覆盖率报告
+
+
+atexit.register(save_coverage)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
