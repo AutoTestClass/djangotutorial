@@ -1,0 +1,5 @@
+[run]
+source = polls  # 确保包含 polls 应用
+omit = */tests/*  # 排除测试文件
+plugins =
+    django_coverage_plugin
