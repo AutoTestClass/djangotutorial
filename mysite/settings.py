@@ -11,25 +11,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
-import coverage
-import atexit
-
-
-# 启动覆盖率收集
-cov = coverage.Coverage(source=['polls'])
-cov.start()
-
-
-def save_coverage():
-    """
-    注册退出时的回调函数，停止覆盖率收集并生成报告
-    """
-    cov.stop()
-    cov.save()
-    cov.html_report(directory='htmlcov')  # 生成 html 格式的覆盖率报告
-
-
-atexit.register(save_coverage)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -165,6 +146,3 @@ SILKY_DYNAMIC_PROFILING = [{
 # 设置用户登录
 SILKY_AUTHENTICATION = True  # User must login
 SILKY_AUTHORISATION = True  # User must have permissions
-
-# 记录silk自身耗时
-SILKY_META = True
