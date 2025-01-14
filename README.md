@@ -70,6 +70,14 @@ python manage.py test polls.tests.test_model.QuestionModelTests
 
 ![](./docs/images/coverage_html_report.png)
 
+
+## API开发
+
+* [查看文档](./docs/dev_api.md)
+
+![](./docs/images/django_ninja_api_docs.png)
+
+
 ## 缓存框架
 
 https://docs.djangoproject.com/zh-hans/5.1/topics/cache/
